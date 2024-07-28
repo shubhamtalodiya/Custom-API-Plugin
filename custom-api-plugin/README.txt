@@ -86,7 +86,7 @@ Use the following endpoint to fetch data by email:
 == Example Requests ==
 
 **Submit Data:**
-
+Request:
 curl -X POST 'https://your-wordpress-site.com/wp-json/custom/v1/submit' \\
 --header 'Authorization: Basic YOUR_ENCODED_CREDENTIALS' \\
 --header 'Content-Type: application/json' \\
@@ -107,12 +107,55 @@ curl -X POST 'https://your-wordpress-site.com/wp-json/custom/v1/submit' \\
   }
 ]'
 
-**Fetch Data:**
+Response:
+[
+  {
+    "index": 0,
+    "post_id": 123,
+    "status": "success"
+  }
+]
 
+**Fetch Data:**
+Request:
 curl -X GET 'https://your-wordpress-site.com/wp-json/custom/v1/fetch?page=1&per_page=10' \\
 --header 'Authorization: Basic YOUR_ENCODED_CREDENTIALS'
 
-**Fetch Data by Email:**
+Response:
+[
+  {
+    "id": 123,
+    "title": "Sample Post",
+    "email": "author@example.com",
+    "created_at": "2023-01-01 00:00:00",
+    "tags": ["tag1", "tag2"],
+    "categories": ["category1", "category2"],
+    "featured_image": "http://example.com/image.jpg",
+    "custom_fields": {
+      "field1": "value1",
+      "field2": "value2"
+    }
+  }
+]
 
+**Fetch Data by Email:**
+Request:
 curl -X GET 'https://your-wordpress-site.com/wp-json/custom/v1/fetch-by-email/author@example.com' \\
 --header 'Authorization: Basic YOUR_ENCODED_CREDENTIALS'
+
+Response:
+[
+  {
+    "id": 123,
+    "title": "Sample Post",
+    "email": "author@example.com",
+    "created_at": "2023-01-01 00:00:00",
+    "tags": ["tag1", "tag2"],
+    "categories": ["category1", "category2"],
+    "featured_image": "http://example.com/image.jpg",
+    "custom_fields": {
+      "field1": "value1",
+      "field2": "value2"
+    }
+  }
+]
